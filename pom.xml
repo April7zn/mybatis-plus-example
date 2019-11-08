@@ -53,6 +53,11 @@
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.2.0</version>
         </dependency>
@@ -98,12 +103,17 @@
         <repository>
             <id>central</id>
             <name>central</name>
-            <url>https://repo1.maven.org/maven2</url>
+            <url>http://repo1.maven.org/maven2</url>
             <releases>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>ali</id>
+            <url>http://maven.aliyun.com/nexus/content/repositories/jcenter/</url>
+        </repository>
     </repositories>
+
     <profiles>
         <profile>
             <id>dev</id>

@@ -3,14 +3,24 @@ server:
   servlet:
     context-path: /
 spring:
+  autoconfigure: #连接池配置
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
   datasource:
-    name: local
     type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+      primary: local
+      datasource:
+        master:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/sakila?useUnicode=true&amp;characterEncoding=utf-8&allowMultiQueries=true
+          username: root
+          password: root
+        local:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/sakila?useUnicode=true&amp;characterEncoding=utf-8&allowMultiQueries=true
+          username: root
+          password: root
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/sakila?useUnicode=true&amp;characterEncoding=utf-8&allowMultiQueries=true
-      username: root
-      password: root
       initialSize: 5
       minIdle: 2
       maxActive: 10

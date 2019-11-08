@@ -1,6 +1,7 @@
 package com.hopesource.mybatisplus.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.hopesource.mybatisplus.dao.StaffMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +24,7 @@ public class TestController {
     @Autowired
     private StaffMapper staffMapper;
 
+    @DS("master")
     @GetMapping("hello.do")
     public String hello(){
 //        List<Map<String,String>> result = jdbcTemplate.query("select * from staff", new RowMapper<Map<String, String>>() {
