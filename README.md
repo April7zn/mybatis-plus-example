@@ -1,7 +1,7 @@
 # mybatis-plus-example
 mybatis-plus 使用记录
-- [ ] druid连接池
-- [ ] 日志配置
+- [x] druid连接池
+- [x] 日志配置
 - [ ] 多数据源
 - [ ] 乐观锁
 - [ ] 子查询
