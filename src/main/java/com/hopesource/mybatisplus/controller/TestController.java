@@ -1,19 +1,17 @@
 package com.hopesource.mybatisplus.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hopesource.mybatisplus.dao.StaffMapper;
+import com.hopesource.mybatisplus.dao.SysAdminMapper;
+import com.hopesource.mybatisplus.model.BaseQuery;
+import com.hopesource.mybatisplus.model.SysAdmin;
+import com.hopesource.mybatisplus.model.SysAdminQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 public class TestController {
@@ -24,9 +22,12 @@ public class TestController {
     @Autowired
     private StaffMapper staffMapper;
 
+    @Autowired
+    private SysAdminMapper sysAdminMapper;
+
     @DS("master")
     @GetMapping("hello.do")
-    public String hello(){
+    public Object hello(){
 //        List<Map<String,String>> result = jdbcTemplate.query("select * from staff", new RowMapper<Map<String, String>>() {
 //            @Override
 //            public Map<String, String> mapRow(ResultSet rs, int i) throws SQLException {
@@ -35,8 +36,21 @@ public class TestController {
 //                return m;
 //            }
 //        });
-        return JSONObject.toJSONString(staffMapper.count());
+        return staffMapper.selectList(null);
     }
 
-    public String
+    @GetMapping("list")
+    public Object list(BaseQuery query){
+        return sysAdminMapper.selectList(new QueryWrapper<SysAdmin>());
+//        .lambda()
+//                .ge(SysAdmin::getCreateTime, query.getBeginDate())
+//                .le(SysAdmin::getCreateTime, query.getEndDate())
+    }
+
+    @GetMapping("get/{id}")
+    public Object get(@PathVariable Long id){
+        return sysAdminMapper.selectById(id);
+    }
+
+
 }
